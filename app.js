@@ -54,7 +54,7 @@ const products = [
     name: "Portable Power Bank 20000mAh",
     category: "Electronics",
     price: 1299,
-    image: "https://images.unsplash.com/photo-1609592424009-5a1b5502c3b8?w=500&q=80"
+    image: "images/powerbank.jpg"
   }
 ];
 
