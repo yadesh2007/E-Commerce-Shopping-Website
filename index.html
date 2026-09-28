@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopCentral - Online E-Commerce Store</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="navbar">
+      <div class="logo">
+        <i class="fa-solid fa-bag-shopping"></i> ShopCentral
+      </div>
+      
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search products..." onkeyup="filterProducts()">
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <div class="nav-actions">
+        <button id="cart-btn" onclick="toggleCart()">
+          <i class="fa-solid fa-cart-shopping"></i> Cart
+          <span id="cart-badge" class="badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Upgrade Your Tech & Style</h1>
+      <p>Discover top deals on premium electronics and accessories.</p>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    
+    <!-- Sidebar Filters -->
+    <aside class="sidebar">
+      <h3>Categories</h3>
+      <ul class="category-list">
+        <li class="active" onclick="selectCategory('All', this)">All Products</li>
+        <li onclick="selectCategory('Electronics', this)">Electronics</li>
+        <li onclick="selectCategory('Fashion', this)">Fashion & Wearables</li>
+        <li onclick="selectCategory('Accessories', this)">Accessories</li>
+      </ul>
+    </aside>
+
+    <!-- Product Grid -->
+    <main class="products-section">
+      <h2 id="section-title">All Products</h2>
+      <div id="product-grid" class="product-grid">
+        <!-- Dynamic Product Cards Injected via JavaScript -->
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Shopping Cart Drawer (Slide-Over) -->
+  <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="cart-header">
+      <h3><i class="fa-solid fa-cart-shopping"></i> Your Shopping Cart</h3>
+      <button class="close-btn" onclick="toggleCart()">&times;</button>
+    </div>
+
+    <div id="cart-items" class="cart-items">
+      <!-- Cart Items Injected via JavaScript -->
+    </div>
+
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>Subtotal:</span>
+        <span>₹<span id="subtotal">0.00</span></span>
+      </div>
+      <div class="summary-row">
+        <span>Delivery Fee:</span>
+        <span id="delivery-fee">₹50.00</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total Amount:</span>
+        <span>₹<span id="total-amount">0.00</span></span>
+      </div>
+
+      <button id="checkout-btn" class="checkout-btn" onclick="showCheckoutModal()">
+        Proceed to Checkout
+      </button>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkout-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
+      <h2>Order & Shipping Details</h2>
+      
+      <form id="checkout-form" onsubmit="processOrder(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" required placeholder="John Doe">
+        </div>
+
+        <div class="form-group">
+          <label>Delivery Address</label>
+          <textarea required rows="3" placeholder="Enter your full street address"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" required placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group">
+            <label>Payment Method</label>
+            <select required>
+              <option value="cod">Cash on Delivery</option>
+              <option value="upi">UPI / Online Payment</option>
+              <option value="card">Credit/Debit Card</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="confirm-order-btn">Confirm Purchase</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
